@@ -1,0 +1,109 @@
+$time-unit-margin: 30px;
+
+.flip1 {
+    transition: transform 0.5s, z-index 0.3s;
+    transform: rotateX(-90deg);
+}
+
+.flip2 {
+    transition: transform 0.5s;
+    z-index: 3 !important;
+    transform: rotateX(0deg) !important;
+}
+
+.clock-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 400px;
+    background: linear-gradient(90deg, rgba(224,208,192,1) 50%, rgba(223,218,215,1) 100%);
+
+    .numbers-container {
+        background: no-repeat, center;
+        background-image: url("../images/counter.png");
+        height: 87px;
+        width: 112px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: $time-unit-margin;
+
+        .flipper {
+            position: relative;
+            perspective: 1000px;
+            width: 73px;
+            height: 74px;
+            margin-top: 5px;
+
+            .page {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                transform-style: preserve-3d;
+
+                &.front {
+                    z-index: 2;
+
+                    .lower {
+                        opacity: 0;
+                    }
+
+                    .upper {
+                        height: 50%;
+                    }
+                }
+
+                &.back {
+                    z-index: 2;
+                    transform: rotateX(-90deg);
+
+                    .front {
+                        opacity: 0;
+                    }
+                }
+
+                .lower {
+                    top: 50%;
+                    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+                }
+        
+                .part {
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                }
+            }
+
+            &:hover .front {
+                transition: transform 0.5s, z-index 0.5s;
+                transform: rotateX(-90deg);
+            }
+            
+            &:hover .back {
+                transition: transform 0.5s, z-index 0.5s;
+                z-index: 3;
+                transform: rotateX(0deg);
+            }
+        }
+    
+        .line {
+            position: absolute;
+            top: 35px;
+        }
+    
+        .number {
+            position: absolute;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            line-height: 1;
+            background-color: #141414;
+        }
+
+        .time-unit {
+            position: absolute;
+            bottom: -$time-unit-margin;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+}

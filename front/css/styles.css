@@ -1,0 +1,93 @@
+.flip1 {
+  transition: transform 0.5s, z-index 0.3s;
+  transform: rotateX(-90deg);
+}
+
+.flip2 {
+  transition: transform 0.5s;
+  z-index: 3 !important;
+  transform: rotateX(0deg) !important;
+}
+
+.clock-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 400px;
+  background: linear-gradient(90deg, rgb(224, 208, 192) 50%, rgb(223, 218, 215) 100%);
+}
+.clock-container .numbers-container {
+  background: no-repeat, center;
+  background-image: url("../images/counter.png");
+  height: 87px;
+  width: 112px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.clock-container .numbers-container .flipper {
+  position: relative;
+  perspective: 1000px;
+  width: 73px;
+  height: 74px;
+  margin-top: 5px;
+}
+.clock-container .numbers-container .flipper .page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.clock-container .numbers-container .flipper .page.front {
+  z-index: 2;
+}
+.clock-container .numbers-container .flipper .page.front .lower {
+  opacity: 0;
+}
+.clock-container .numbers-container .flipper .page.front .upper {
+  height: 50%;
+}
+.clock-container .numbers-container .flipper .page.back {
+  z-index: 2;
+  transform: rotateX(-90deg);
+}
+.clock-container .numbers-container .flipper .page.back .front {
+  opacity: 0;
+}
+.clock-container .numbers-container .flipper .page .lower {
+  top: 50%;
+  -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+          clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+.clock-container .numbers-container .flipper .page .part {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.clock-container .numbers-container .flipper:hover .front {
+  transition: transform 0.5s, z-index 0.5s;
+  transform: rotateX(-90deg);
+}
+.clock-container .numbers-container .flipper:hover .back {
+  transition: transform 0.5s, z-index 0.5s;
+  z-index: 3;
+  transform: rotateX(0deg);
+}
+.clock-container .numbers-container .line {
+  position: absolute;
+  top: 35px;
+}
+.clock-container .numbers-container .number {
+  position: absolute;
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1;
+  background-color: #141414;
+}
+.clock-container .numbers-container .time-unit {
+  position: absolute;
+  bottom: -30px;
+  font-size: 24px;
+  font-weight: bold;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,27 @@
+Zadanie #1
+SELECT t.id AS winning_ticket_id 
+FROM tickets t 
+JOIN draws d ON t.draw_id = d.id 
+WHERE d.lottery_id = 2
+AND t.number = d.won_number;
+
+Zadanie #2
+SELECT
+    l.name AS 'nazwa loterii',
+    SUM(l.ticket_price) AS przychód,
+    SUM(
+        CASE
+            WHEN t.bought_date <= d.draw_date THEN l.ticket_price
+            ELSE 0
+        END
+    ) AS zysk
+FROM
+    lotteries l
+JOIN
+    draws d ON l.id = d.lottery_id
+JOIN
+    tickets t ON d.id = t.draw_id
+WHERE
+    d.draw_date >= '2021-07-01' AND d.draw_date < '2021-08-01'
+GROUP BY
+    l.id;
